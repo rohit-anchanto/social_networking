@@ -1,0 +1,8 @@
+<h1>Post show page </h1>
+<p><%= @post.name %></p>
+<p><%= @post.description %></p>
+<p><%= @post.user_id %>
+<br>
+<%= link_to "edit_post" ,edit_post_path %>
+<br>
+<%= link_to "delete_post", post_path, method: :delete, data: {confirm: "are you sure"} %>

@@ -1,0 +1,9 @@
+<h1>welcome</h1>
+<% if current_user %>
+<%= link_to 'create post' ,new_post_path %>
+<br>
+<%= link_to 'all post' ,posts_path %>
+<br>
+<%= link_to 'sign_out' ,destroy_user_session_path , method: :delete%>
+<% end %>
+
