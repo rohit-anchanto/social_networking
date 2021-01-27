@@ -1,6 +1,13 @@
 <h1>Show all post </h1>
 
 <% @posts.each do |p| %>
+
    <p><%= p.name %></p>
    <p><%= p.description %></p>
+   <%= link_to "edit_post" ,edit_post_path(p) %>
+   <br>
+   <%= link_to "delete_post", post_path(p), method: :delete, data: {confirm: "are you sure"} %>
+   <p>------------------------------------------------</p>
 <% end %>
+
+<%= link_to 'home' ,root_path %> 
