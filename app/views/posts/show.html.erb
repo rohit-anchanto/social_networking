@@ -2,6 +2,14 @@
 <p><%= @post.name %></p>
 <p><%= @post.description %></p>
 <p><%= @post.user_id %>
+
+<h3>show all comments</h3>
+<% @comments.each do |c| %>
+    <p> <%= c.com %> </p>
+    <p> author- <%= c.user.first_name %>  <%= c.user.last_name %> </p>
+<% end %>
+<br>
+<%= link_to "add_comment" , new_post_comment_path(@post) %>
 <br>
 <%= link_to "edit_post" ,edit_post_path %>
 <br>

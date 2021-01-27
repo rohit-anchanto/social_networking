@@ -4,9 +4,8 @@
 
    <p><%= p.name %></p>
    <p><%= p.description %></p>
-   <%= link_to "edit_post" ,edit_post_path(p) %>
-   <br>
-   <%= link_to "delete_post", post_path(p), method: :delete, data: {confirm: "are you sure"} %>
+   <%= link_to "show_post" ,post_path(p) %>
+  
    <p>------------------------------------------------</p>
 <% end %>
 

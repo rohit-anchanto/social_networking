@@ -10,9 +10,10 @@ class PostsController < ApplicationController
     
     def show 
        @post=Post.find(params[:id])
+       @comments=@post.comments
     end
 
-    def create 
+    def create
         @post = Post.new(post_params) 
         @post.user = current_user
         if @post.save 
