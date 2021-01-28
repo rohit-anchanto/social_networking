@@ -15,7 +15,26 @@ class CommentsController < ApplicationController
           redirect_to root_path 
         end 
     end
-
+    def edit
+        @post = Post.find params[:post_id]
+        @comment = Comment.find(params[:id])
+    end
+    def update
+        @comment = Comment.find(params[:id]) 
+        @post=Post.find(params[:post_id])
+        if @comment.update(comment_params)
+          flash[:notice] = "Comment was updated successfully." 
+          redirect_to post_path(@post)
+        else 
+          render 'edit'
+        end 
+    end
+    def destroy
+        @comment=Comment.find(params[:id])
+        @comment.destroy
+        @post=Post.find(params[:post_id])
+        redirect_to @post
+    end
     private
     
     def comment_params
