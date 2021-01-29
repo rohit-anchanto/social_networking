@@ -2,8 +2,16 @@
 <p><%= @post.title %></p>
 <p><%= @post.description %></p>
 <p><%= @post.user_id %>
+<p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
-<h3>show all comments</h3>
+<% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+  <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete, remote:true %>
+<% else %>
+  <%= button_to 'Like', post_likes_path(@post), method: :post ,remote:true%>
+<% end %>
+
+  <h3>show all comments</h3>
 <% @comments.each do |c| %>
     <p> <%= c.comment %> </p>
     <p> author- <%= c.user.first_name %>  <%= c.user.last_name %> </p>
@@ -16,7 +24,7 @@
     <p>-------------------------------------------</p>
 <% end %>
 <br>
-<%= form_with(model: [@post,@comment], class: "shadow p-3 mb-3 bg-info rounded", remote: true) do |f| %>
+<%= form_with(model: [@post,@comment], class: "shadow p-3 mb-3 bg-info rounded", local:false) do |f| %>
   
 
     <div class="field">
