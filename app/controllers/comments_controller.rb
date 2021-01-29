@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    load_and_authorize_resource except: [:index,:show]
     def new
         @post = Post.find params[:post_id]
         @comment = Comment.new(:post=>@post)
@@ -38,6 +39,6 @@ class CommentsController < ApplicationController
     private
     
     def comment_params
-        params.require(:comment).permit(:com)
+        params.require(:comment).permit(:comment)
     end
 end

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    load_and_authorize_resource except: [:index,:show]
     def my_profile
       @user = current_user
     end

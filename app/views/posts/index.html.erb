@@ -2,7 +2,7 @@
 
 <% @posts.each do |p| %>
 
-   <p><%= p.name %></p>
+   <p><%= p.title %></p>
    <p><%= p.description %></p>
    <%= link_to "show_post" ,post_path(p) %>
   

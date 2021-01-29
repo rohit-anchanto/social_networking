@@ -2,11 +2,16 @@
 <h2>User Posts</h2>
 <% @user.posts.each do |p| %>
 
-    <p>name-<%= p.name %></p>
+    <p>name-<%= p.title %></p>
     <p>description-<%= p.description %></p>
-    <%= link_to "edit_post" ,edit_post_path(p) %>
+    <%= link_to 'shoe-post',post_path(p) %>
+    <% if can? :update, p %>
+        <%= link_to "edit_post" ,edit_post_path(p) %>
+    <% end %>
     <br>
+    <% if can? :destroy, p %>
     <%= link_to "delete_post", post_path(p), method: :delete, data: {confirm: "are you sure"} %>
+    <% end %>
     <p>------------------------------------------------</p>
  <% end %>
  <%= link_to 'back' ,:back %>

@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
-    
+    load_and_authorize_resource except: [:index,:show]
     def index
         @posts=Post.all
      end
     def new
-       @post=Post.new
+      @post=Post.new
+      
     end
     
     def show 
@@ -47,6 +48,6 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:name,:description)
+        params.require(:post).permit(:title,:description)
     end
 end
