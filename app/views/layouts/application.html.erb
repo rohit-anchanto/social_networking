@@ -11,6 +11,9 @@
 
   <body>
   <%= render 'layouts/messages' %>
+  <%if(current_user)%>
+     <h1>logged in as <%= current_user.first_name %></h1>
+ <% end%>
     <%= yield %>
   </body>
 </html>

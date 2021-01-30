@@ -1,0 +1,11 @@
+<h1>friend request pending</h1>
+<%  @pendingrequests.each do |request| %>
+  <p><%= request.first_name %> <%= request.last_name %>  
+  <%= link_to 'cancel-request', user_friendship_path(current_user,request),method: :delete %>
+
+  </p>
+  
+<%end%>
+<br>
+<%= link_to 'back',:back %>|
+<%= link_to 'home', root_path%>

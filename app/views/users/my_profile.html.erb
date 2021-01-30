@@ -1,4 +1,9 @@
 <h1>hi <%= @user.first_name + " " +@user.last_name %></h1>
+<%= link_to 'friend_request_sent', user_pending_request_path(@user) %>
+<br>
+<%= link_to 'friend_request_recieved', user_receieved_request_path(@user) %>
+<br>
+<%= link_to 'friends', user_friends_path(@user) %>
 <h2>User Posts</h2>
 <% @user.posts.each do |p| %>
 
