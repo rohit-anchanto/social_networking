@@ -1,0 +1,10 @@
+<h1>friend request recieved</h1>
+<% @r.each do |user| %>
+    <p><%= user.first_name %> <%= user.last_name %></p>
+    <%= link_to 'accept-request', accept_request_path(user), method: :post%>
+  |
+    <%= link_to 'Decline', user_friendship_path(user,current_user),method: :delete %>
+  <%end%>
+  <br>
+  <%= link_to 'back',:back %>
+  <%= link_to 'home',root_path %>

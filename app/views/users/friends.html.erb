@@ -1,0 +1,9 @@
+<h1>friend list</h1>
+
+<% @friends.each do |friend| %>
+    <%= link_to full_name(friend), user_path(friend) %> 
+    <br> 
+<% end %>
+<br>
+<%= link_to 'back',:back %>|
+<%= link_to 'home',root_path %>
