@@ -15,6 +15,14 @@
 <% @comments.each do |c| %>
     <p> <%= c.comment %> </p>
     <p> author- <%= c.user.first_name %>  <%= c.user.last_name %> </p>
+    <p><%= c.likes.count %> <%= (c.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+
+    <% pre_like = c.likes.find { |like| like.user_id == current_user.id} %>
+    <% if pre_like %>
+      <%= button_to 'Unlike', post_comment_like_path(@post,c, pre_like), method: :delete, remote:true %>
+    <% else %>
+      <%= button_to 'Like', post_comment_likes_path(@post,c), method: :post ,remote:true%>
+    <% end %>
     <% if can? :update, c %>
       <%= link_to 'edit', edit_post_comment_path(@post,c) %>
     <% end %>
