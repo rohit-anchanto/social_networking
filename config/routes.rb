@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'my_profile', to: 'users#my_profile'
   post 'users/accept_request/:user_id', to: "friendships#accept",as: 'accept_request'
   delete 'users/unfriend/:user_id',to:"friendships#unfriend",as: "user_unfriend"
+  get 'search_user', to: 'users#search'
   resources:users, only: [:index, :show, :destroy] do
     resources:friendships
   end  

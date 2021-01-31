@@ -42,6 +42,7 @@ class FriendshipsController < ApplicationController
             redirect_to @user
         else
             @friends=Friendship.find_by(sent_by:current_user,sent_to:@user)
+            @friends.destroy
             redirect_to @user
         end	
     end

@@ -1,5 +1,23 @@
 <h1>welcome</h1>
 <% if current_user %>
+<div class='search-area'>
+	<h3>Search User</h3>
+	<%= form_tag search_user_path,remote: true,method: :get do %>
+		<div class="form-group row">
+			<div class="col-sm-9">
+				<%= text_field_tag :user,params[:user],placeholder: "Search Friend",autofocus: true, class: "form-control form-control-lg" %>
+			</div>
+			<div class="col-sm-3">
+				<%= button_tag type: :submit ,class:"btn btn-success" do %>
+					<%= 'Search' %>
+				<% end %>
+			</div>
+		</div>
+		<% end %>
+</div>
+<div id="results">
+	<%= render 'users/result' %>
+</div>
 <%= link_to 'my_profile' ,my_profile_path %>
 <br>
 <%= link_to 'create post' ,new_post_path %>
