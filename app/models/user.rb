@@ -27,4 +27,25 @@ class User < ApplicationRecord
   def all_friends
       (friends_a_to_b+friends_b_to_a).uniq
   end
+
+  def self.search(searchstring)
+  	searchstring.strip!
+  	@first=match('email',searchstring)
+  	@second=match('first_name',searchstring)
+  	@third=match('last_name',searchstring)
+  	(@first+@second+@third).uniq
+  end
+
+  def self.match(fieldname,searchstring)
+  	where("#{fieldname} like ?","%#{searchstring}%")
+  end
+
+  def except_current_user(users)
+  	users.reject { |user| user.id==self.id }
+  end
+
+  def full_name
+  	"#{first_name} #{last_name}"
+  end
+
 end

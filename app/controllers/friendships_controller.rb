@@ -32,6 +32,20 @@ class FriendshipsController < ApplicationController
             end
         end
     end
+    def unfriend
+        
+        @user=User.find(params[:user_id])
+		
+        @friends=Friendship.find_by(sent_by:@user,sent_to:current_user)
+        if(@friends)
+            @friends.destroy
+            redirect_to @user
+        else
+            @friends=Friendship.find_by(sent_by:current_user,sent_to:@user)
+            @friends.destroy
+            redirect_to @user
+        end	
+    end
     def destroy
 		@sender=User.find(params[:user_id])
 		@receiver=User.find(params[:id])
