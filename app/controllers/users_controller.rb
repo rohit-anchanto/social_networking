@@ -35,7 +35,6 @@ class UsersController < ApplicationController
         else
           respond_to do |format|
             flash[:notice]="No user Present"
-            byebug
             format.js { render partial: 'users/result'}
           end
         end
