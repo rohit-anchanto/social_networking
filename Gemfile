@@ -31,6 +31,7 @@ gem 'cancancan'
 gem "font-awesome-rails"
 gem 'bootstrap', '~> 5.0.0.beta1'
 gem 'jquery-rails'
+gem 'carrierwave', '~> 2.0'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

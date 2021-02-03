@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name ,presence: true,length: { minimum: 2,maximum: 25}
   validates :last_name ,presence: true,length: { minimum: 2,maximum: 25}
+  mount_uploader :image, ImageUploader
   has_many:posts, dependent: :destroy
   has_many:comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -28,7 +29,7 @@ class User < ApplicationRecord
       (friends_a_to_b+friends_b_to_a).uniq
   end
 
-  def self.search(searchstring)
+  def self.search(searchstring,id1)
   	searchstring.strip!
     where("email like ?","%#{searchstring}%").or(where("first_name like ?","%#{searchstring}%").or(where("last_name like ?","%#{searchstring}%")))
   end

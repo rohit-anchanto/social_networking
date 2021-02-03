@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
     def search
       if params[:user].present?
-        @users=User.search(params[:user])
+        @users=User.search(params[:user],current_user.id)
         @users=current_user.except_current_user(@users)
         if @users.present?
           respond_to do |format|

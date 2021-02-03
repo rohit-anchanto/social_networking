@@ -1,7 +1,8 @@
 <h1>Post show page </h1>
-<p><%= @post.title %></p>
-<p><%= @post.description %></p>
-<p><%= @post.user_id %>
+<p>Title - <%= @post.title %></p>
+<p>Destription - <%= @post.description %></p>
+<p>Author - <%= @post.user.first_name %>
+<p>post-type - <%= @post.post_type %> </p>
 <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
 
 <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
