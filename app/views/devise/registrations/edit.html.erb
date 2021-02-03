@@ -30,7 +30,10 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
-
+  <div>
+    <%= f.label :image %> <br/>
+    <%= f.file_field :image ,accept: 'image/jpeg,image/gif,image/png' %>
+  </div>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

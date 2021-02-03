@@ -1,4 +1,9 @@
 <h1>hi <%= @user.first_name + " " +@user.last_name %></h1>
+<div class: "card " style= "width: 18rem;">
+    <%= image_tag @user.image_url.to_s, size: "100x100" , class: "card-img-top"  %>
+    <div class: "card-body">
+    </div>
+  </div>
 <%= link_to 'friend_request_sent', user_pending_request_path(@user) %>
 <br>
 <%= link_to 'friend_request_recieved', user_receieved_request_path(@user) %>
@@ -9,9 +14,11 @@
 
     <p>title-<%= p.title %></p>
     <p>description-<%= p.description %></p>
+    <p>post-type- <%= p.post_type %> </p>
     <%= link_to "show_post" ,post_path(p) %>
     <p>------------------------------------------------</p>
  <% end %>
+ <%= link_to "Edit your profile", edit_user_registration_path %> | 
  <%= link_to 'back' ,:back %>
 
  <%= link_to 'home' ,root_path %> 

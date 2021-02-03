@@ -2,7 +2,17 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
     load_and_authorize_resource except: [:index,:show]
     def index
-        @posts=Post.all
+      @my_posts = current_user.posts
+      @all_posts = @my_posts
+  
+  
+      #show his friends posts where(post_type: "friends") or (post_type: "everyone")
+      @friends = current_user.all_friends
+      @friends.each do |friend|
+        @all_posts+= friend.posts.where(post_type: "friends").or(friend.posts.where(post_type: "public")) 
+      end
+  
+      @posts = @all_posts
      end
     def new
       @post=Post.new
@@ -17,6 +27,7 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params) 
+        post_visibility
         @post.user = current_user
         if @post.save 
           flash[:notice] = "Post was created successfully." 
@@ -31,6 +42,7 @@ class PostsController < ApplicationController
     end
     def update
         @post=Post.find(params[:id])
+        post_visibility
         if @post.update(post_params)
             flash[:notice] = "Post was updated successfully."
             redirect_to @post
@@ -49,5 +61,16 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(:title,:description)
+    end
+
+    def post_visibility
+      @type = params[:post_type_id]
+      if @type == '1'
+        @post.post_type = "public"
+      elsif @type == '2'
+        @post.post_type = "friends"
+      else
+        @post.post_type = "only me"
+      end
     end
 end

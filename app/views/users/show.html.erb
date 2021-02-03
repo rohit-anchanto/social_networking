@@ -1,4 +1,10 @@
 <h1>hi <%= @user.first_name + " " +@user.last_name %></h1>
+<div class: "card " style= "width: 18rem;">
+    <%= image_tag @user.image_url.to_s, size: "100x100" , class: "card-img-top"  %>
+    <div class: "card-body">
+      
+    </div>
+  </div>
 <% if(!is_friend(current_user,@user)&&!is_request_sent(current_user,@user)) %>
    <%= button_to 'Add_friend', user_friendships_path(@user), method: :post ,remote:true%>
 <% elsif is_request_sent(current_user,@user) &&!is_friend(current_user,@user)%>
@@ -7,10 +13,11 @@
     <%= button_to 'Unfriend', user_unfriend_path(@user), method: :delete ,remote:true%>
 <%end %>
 <h2>User Posts</h2>
-<% @user.posts.each do |p| %>
+<% @posts.each do |p| %>
 
     <p>title-<%= p.title %></p>
     <p>description-<%= p.description %></p>
+    <p>post-type- <%= p.post_type %> </p>
     <%= link_to 'show-post',post_path(p) %>
     <% if can? :update, p %>
         <%= link_to "edit_post" ,edit_post_path(p) %>

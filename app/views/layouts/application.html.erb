@@ -10,10 +10,12 @@
   </head>
 
   <body>
+  <div class="container">
   <%= render 'layouts/messages' %>
   <%if(current_user)%>
-     <h1>logged in as <%= current_user.first_name %></h1>
+     <h2>logged in as <%= current_user.first_name %></h2>
  <% end%>
     <%= yield %>
+  </div>
   </body>
 </html>
