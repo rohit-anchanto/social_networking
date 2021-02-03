@@ -30,14 +30,7 @@ class User < ApplicationRecord
 
   def self.search(searchstring)
   	searchstring.strip!
-  	@first=match('email',searchstring)
-  	@second=match('first_name',searchstring)
-  	@third=match('last_name',searchstring)
-  	(@first+@second+@third).uniq
-  end
-
-  def self.match(fieldname,searchstring)
-  	where("#{fieldname} like ?","%#{searchstring}%")
+    where("email like ?","%#{searchstring}%").or(where("first_name like ?","%#{searchstring}%").or(where("last_name like ?","%#{searchstring}%")))
   end
 
   def except_current_user(users)

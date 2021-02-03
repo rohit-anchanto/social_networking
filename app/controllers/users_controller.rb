@@ -23,6 +23,11 @@ class UsersController < ApplicationController
        if(@user==current_user)
         redirect_to my_profile_path
        end
+       @posts = @user.posts.where(post_type: "public")
+       if(is_friend(current_user,@user))
+         @posts += @user.posts.where(post_type: "friends")
+       end
+
     end
     def search
       if params[:user].present?

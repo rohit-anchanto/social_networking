@@ -7,7 +7,7 @@
     <%= button_to 'Unfriend', user_unfriend_path(@user), method: :delete ,remote:true%>
 <%end %>
 <h2>User Posts</h2>
-<% @user.posts.each do |p| %>
+<% @posts.each do |p| %>
 
     <p>title-<%= p.title %></p>
     <p>description-<%= p.description %></p>

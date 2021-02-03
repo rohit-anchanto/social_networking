@@ -13,7 +13,9 @@
     <%= f.label :description %><br />
     <%= f.text_field :description, autofocus: true, autocomplete: "description" %>
   </div>
-
+  <div>
+    <%= select_tag(:post_type_id, options_for_select([['Public', 1], ['Friends', 2],['Only me', 3]])) %>
+  </div>
   <div class="actions">
     <%= f.submit "create post" %>
   </div>
